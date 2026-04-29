@@ -1,7 +1,7 @@
 # ✕ ○ TicTacToe
 
 Real-time multiplayer Tic Tac Toe built on Node.js + WebSockets with a single-binary static frontend.
-
+Can play mutiplayer,AI, or the same device.
 ---
 
 ## Stack
@@ -23,12 +23,6 @@ npm install && npm start
 ```
 Reads `process.env.PORT` — drop it anywhere (Railway, Render, Fly).
 
-## Repo Structure
-
-├── server.js        # WS server + room logic
-├── package.json
-└── public/
-└── index.html   # Entire frontend, self-contained
 
 ---
 
