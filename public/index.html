@@ -220,9 +220,10 @@
     const move = getBestMove();
     if (move === -1) return;
     board[move] = 'O';
+    turn = 'X';
     const result = getResult();
     renderLocalBoard(result);
-    if (!result) { turn = 'X'; setStatus('Your turn', 'x'); }
+    if (!result) { setStatus('Your turn', 'x'); }
   }
 
   function getBestMove() {
