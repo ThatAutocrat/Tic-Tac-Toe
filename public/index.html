@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --bg: #0a0a0f;
     --surface: #12121a;
@@ -16,9 +15,7 @@
     --o: #ff6e9c;
     --text: #f0f0f8;
     --muted: #6a6a8a;
-    --win-bg: #1a1a2a;
   }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -29,241 +26,98 @@
     align-items: center;
     justify-content: center;
     padding: 2rem 1rem;
-    background-image: radial-gradient(ellipse at 20% 50%, rgba(232,255,110,0.03) 0%, transparent 60%),
-                      radial-gradient(ellipse at 80% 20%, rgba(255,110,156,0.03) 0%, transparent 60%);
   }
-
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    text-align: center;
-    margin-bottom: 0.25rem;
-  }
-
+  h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 6vw, 3rem); font-weight: 800; letter-spacing: -0.02em; text-align: center; margin-bottom: 0.25rem; }
   h1 span:first-child { color: var(--x); }
   h1 span:last-child { color: var(--o); }
-
-  .subtitle {
-    font-size: 11px;
-    color: var(--muted);
-    text-align: center;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-  }
-
-  .screen {
-    width: 100%;
-    max-width: 420px;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    animation: fadeIn 0.3s ease;
-  }
+  .subtitle { font-size: 11px; color: var(--muted); text-align: center; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2rem; }
+  .screen { width: 100%; max-width: 420px; display: none; flex-direction: column; align-items: center; gap: 1rem; animation: fadeIn 0.25s ease; }
   .screen.active { display: flex; }
-
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-
-  .card {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-  }
-
-  .card-title {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 1rem;
-  }
-
-  input[type="text"] {
-    width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    color: var(--text);
-    font-family: 'Space Mono', monospace;
-    font-size: 1.1rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    outline: none;
-    text-align: center;
-    transition: border-color 0.2s;
-  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .card { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+  .card-title { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+  .mode-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1rem; cursor: pointer; text-align: center; transition: all 0.15s; }
+  .mode-card:hover { border-color: #4a4a6a; background: #1a1a28; }
+  .mode-icon { font-size: 22px; margin-bottom: 8px; }
+  .mode-label { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; }
+  .mode-sub { font-size: 10px; color: var(--muted); margin-top: 4px; }
+  input[type="text"] { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; color: var(--text); font-family: 'Space Mono', monospace; font-size: 1.1rem; letter-spacing: 0.2em; text-transform: uppercase; outline: none; text-align: center; transition: border-color 0.2s; margin-bottom: 10px; }
   input[type="text"]:focus { border-color: var(--o); }
-
-  .btn {
-    width: 100%;
-    padding: 0.85rem 1.5rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: transparent;
-    color: var(--text);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: all 0.15s;
-    text-transform: uppercase;
-  }
+  .btn { width: 100%; padding: 0.8rem 1.5rem; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--text); font-family: 'Space Mono', monospace; font-size: 0.8rem; letter-spacing: 0.08em; cursor: pointer; transition: all 0.15s; text-transform: uppercase; margin-top: 6px; }
   .btn:hover { background: var(--border); }
   .btn.primary { background: var(--x); color: #0a0a0f; border-color: var(--x); font-weight: 700; }
   .btn.primary:hover { opacity: 0.85; }
-  .btn.secondary { border-color: var(--o); color: var(--o); }
-  .btn.secondary:hover { background: rgba(255,110,156,0.1); }
-
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    color: var(--muted);
-    font-size: 11px;
-  }
-  .divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .room-code {
-    font-size: clamp(2rem, 10vw, 3rem);
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    color: var(--x);
-    text-align: center;
-    padding: 1rem 0;
-  }
-
-  .waiting-text {
-    font-size: 12px;
-    color: var(--muted);
-    text-align: center;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-  .score-bar {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    align-items: center;
-    gap: 1rem;
-  }
+  .btn.accent { border-color: var(--o); color: var(--o); }
+  .btn.accent:hover { background: rgba(255,110,156,0.1); }
+  .btn.sm { padding: 0.6rem 1rem; font-size: 11px; margin-top: 0; }
+  .divider { display: flex; align-items: center; gap: 1rem; width: 100%; color: var(--muted); font-size: 11px; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .room-code { font-size: clamp(2rem, 10vw, 3rem); font-weight: 700; letter-spacing: 0.3em; color: var(--x); text-align: center; padding: 0.75rem 0; }
+  .waiting-text { font-size: 12px; color: var(--muted); text-align: center; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .score-bar { display: grid; grid-template-columns: 1fr auto 1fr; width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1.25rem; align-items: center; gap: 1rem; }
   .score-player { text-align: center; }
   .score-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-  .score-num { font-size: 2rem; font-weight: 700; }
+  .score-num { font-size: 1.8rem; font-weight: 700; }
   .score-num.x { color: var(--x); }
   .score-num.o { color: var(--o); }
   .score-draw { text-align: center; }
-  .score-draw .score-label { font-size: 10px; }
   .score-draw .score-num { font-size: 1.2rem; color: var(--muted); }
-
-  .status {
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: center;
-    min-height: 20px;
-  }
+  .status { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center; min-height: 20px; }
   .status.x { color: var(--x); }
   .status.o { color: var(--o); }
-
-  .board {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    width: 100%;
-    aspect-ratio: 1;
-  }
-
-  .cell {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 8vw, 3rem);
-    font-weight: 800;
-    cursor: pointer;
-    transition: all 0.15s;
-    aspect-ratio: 1;
-  }
+  .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; }
+  .cell { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: clamp(2rem, 8vw, 2.8rem); font-weight: 800; cursor: pointer; transition: all 0.15s; aspect-ratio: 1; }
   .cell:hover:not(.taken):not(.disabled) { background: #1a1a28; border-color: #3a3a5a; transform: scale(0.97); }
   .cell.x { color: var(--x); cursor: default; }
   .cell.o { color: var(--o); cursor: default; }
-  .cell.taken { cursor: default; }
-  .cell.disabled { cursor: not-allowed; }
-  .cell.win { background: var(--win-bg); border-color: var(--x); box-shadow: inset 0 0 20px rgba(232,255,110,0.08); }
-  .cell.win.o { border-color: var(--o); box-shadow: inset 0 0 20px rgba(255,110,156,0.08); }
-
-  .role-badge {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: center;
-  }
-  .role-badge span { font-weight: 700; }
-  .role-badge .rx { color: var(--x); }
-  .role-badge .ro { color: var(--o); }
-
-  .error-msg {
-    font-size: 12px;
-    color: var(--o);
-    text-align: center;
-    min-height: 18px;
-  }
-
-  .copy-btn {
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    cursor: pointer;
-    letter-spacing: 0.05em;
-    text-decoration: underline;
-    padding: 0;
-  }
+  .cell.taken, .cell.disabled { cursor: default; }
+  .cell.win { background: #1a1a28; border-color: var(--x); }
+  .cell.win.o-win { border-color: var(--o); }
+  .role-badge { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-align: center; }
+  .role-badge .rx { color: var(--x); font-weight: 700; }
+  .role-badge .ro { color: var(--o); font-weight: 700; }
+  .error-msg { font-size: 12px; color: var(--o); text-align: center; min-height: 16px; margin-top: 6px; }
+  .copy-btn { background: none; border: none; color: var(--muted); font-family: 'Space Mono', monospace; font-size: 11px; cursor: pointer; text-decoration: underline; padding: 0; }
   .copy-btn:hover { color: var(--text); }
+  .thinking { font-size: 11px; color: var(--muted); text-align: center; animation: pulse 1.5s infinite; min-height: 16px; }
+  .row { display: flex; gap: 8px; width: 100%; }
+  .row .btn { margin-top: 0; }
 </style>
 </head>
 <body>
 
 <h1><span>X</span> vs <span>O</span></h1>
-<p class="subtitle">Multiplayer · Real-time</p>
+<p class="subtitle">Single player · Multiplayer</p>
 
 <!-- Lobby -->
 <div class="screen active" id="screen-lobby">
   <div class="card">
-    <p class="card-title">Start a game</p>
-    <button class="btn primary" onclick="createRoom()">Create room</button>
+    <p class="card-title">Choose a mode</p>
+    <div class="mode-grid">
+      <div class="mode-card" id="mode-single" onclick="selectMode('single')">
+        <div class="mode-icon">🤖</div>
+        <div class="mode-label">vs AI</div>
+        <div class="mode-sub">Same device</div>
+      </div>
+      <div class="mode-card" id="mode-local" onclick="selectMode('local')">
+        <div class="mode-icon">👥</div>
+        <div class="mode-label">Local</div>
+        <div class="mode-sub">Pass & play</div>
+      </div>
+    </div>
+    <button class="btn primary" style="margin-top:14px;" onclick="startLocal()">Play now</button>
   </div>
 
-  <div class="divider">or</div>
+  <div class="divider">or play online</div>
 
   <div class="card">
-    <p class="card-title">Join a game</p>
+    <p class="card-title">Online multiplayer</p>
+    <button class="btn" onclick="createRoom()">Create room</button>
+    <div class="divider" style="margin:10px 0;">or</div>
     <input type="text" id="room-input" placeholder="ENTER CODE" maxlength="6" />
-    <br><br>
-    <button class="btn secondary" onclick="joinRoom()">Join room</button>
+    <button class="btn accent" onclick="joinRoom()">Join room</button>
     <p class="error-msg" id="join-error"></p>
   </div>
 </div>
@@ -284,7 +138,7 @@
 <div class="screen" id="screen-game">
   <div class="score-bar">
     <div class="score-player">
-      <div class="score-label">X</div>
+      <div class="score-label" id="label-x">X</div>
       <div class="score-num x" id="score-x">0</div>
     </div>
     <div class="score-draw">
@@ -292,171 +146,282 @@
       <div class="score-num" id="score-d">0</div>
     </div>
     <div class="score-player">
-      <div class="score-label">O</div>
+      <div class="score-label" id="label-o">O</div>
       <div class="score-num o" id="score-o">0</div>
     </div>
   </div>
 
-  <p class="status" id="game-status">Waiting...</p>
+  <p class="status" id="game-status">Your turn</p>
   <p class="role-badge" id="role-badge"></p>
+  <p class="thinking" id="thinking"></p>
 
   <div class="board" id="board"></div>
 
-  <button class="btn" id="reset-btn" onclick="resetGame()" style="display:none;">Play again</button>
-  <button class="btn" onclick="leaveRoom()">Leave room</button>
+  <div class="row" style="margin-top:4px;">
+    <button class="btn sm" id="reset-btn" onclick="resetGame()" style="display:none;">Play again</button>
+    <button class="btn sm" onclick="goHome()">Leave</button>
+  </div>
 </div>
 
 <script>
-  let ws, myRole, currentBoard, currentTurn, gameOver = false, myRoomId;
+  let mode = 'single';
+  let ws, myRole, myRoomId;
+  let board, turn, gameOver, scores;
+  let aiThinking = false;
 
-  function connect() {
+  const WINS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+
+  function selectMode(m) {
+    mode = m;
+    document.getElementById('mode-single').style.borderColor = m === 'single' ? 'var(--x)' : 'var(--border)';
+    document.getElementById('mode-local').style.borderColor = m === 'local' ? 'var(--x)' : 'var(--border)';
+  }
+
+  function startLocal() {
+    if (ws) { ws.close(); ws = null; }
+    board = Array(9).fill(null);
+    turn = 'X'; gameOver = false; aiThinking = false;
+    scores = {X:0, O:0, D:0};
+    updateScores();
+    document.getElementById('label-x').textContent = mode === 'single' ? 'You' : 'X';
+    document.getElementById('label-o').textContent = mode === 'single' ? 'AI' : 'O';
+    document.getElementById('role-badge').innerHTML = mode === 'single'
+      ? 'You are <span class="rx">X</span>'
+      : 'Pass the device each turn';
+    document.getElementById('reset-btn').style.display = 'none';
+    document.getElementById('thinking').textContent = '';
+    showScreen('game');
+    renderLocalBoard();
+    setStatus(mode === 'single' ? 'Your turn' : "X's turn", 'x');
+  }
+
+  function cellClick(i) {
+    if (gameOver || board[i] || aiThinking) return;
+    if (mode === 'single' && turn === 'O') return;
+    board[i] = turn;
+    const result = getResult();
+    renderLocalBoard(result);
+    if (!result) {
+      turn = turn === 'X' ? 'O' : 'X';
+      if (mode === 'single' && turn === 'O') {
+        setStatus('AI is thinking...', '');
+        document.getElementById('thinking').textContent = '· · ·';
+        aiThinking = true;
+        setTimeout(aiMove, 600);
+      } else {
+        setStatus(mode === 'single' ? 'Your turn' : turn + "'s turn", turn.toLowerCase());
+      }
+    }
+  }
+
+  function aiMove() {
+    aiThinking = false;
+    document.getElementById('thinking').textContent = '';
+    const move = getBestMove();
+    if (move === -1) return;
+    board[move] = 'O';
+    const result = getResult();
+    renderLocalBoard(result);
+    if (!result) { turn = 'X'; setStatus('Your turn', 'x'); }
+  }
+
+  function getBestMove() {
+    for (const [a,b,c] of WINS) {
+      if (board[a]==='O'&&board[b]==='O'&&!board[c]) return c;
+      if (board[a]==='O'&&board[c]==='O'&&!board[b]) return b;
+      if (board[b]==='O'&&board[c]==='O'&&!board[a]) return a;
+    }
+    for (const [a,b,c] of WINS) {
+      if (board[a]==='X'&&board[b]==='X'&&!board[c]) return c;
+      if (board[a]==='X'&&board[c]==='X'&&!board[b]) return b;
+      if (board[b]==='X'&&board[c]==='X'&&!board[a]) return a;
+    }
+    if (!board[4]) return 4;
+    const corners = [0,2,6,8].filter(i => !board[i]);
+    if (corners.length) return corners[Math.floor(Math.random()*corners.length)];
+    const empty = board.findIndex(v => !v);
+    return empty;
+  }
+
+  function getResult() {
+    for (const [a,b,c] of WINS) {
+      if (board[a] && board[a]===board[b] && board[a]===board[c])
+        return {winner: board[a], cells:[a,b,c]};
+    }
+    if (board.every(Boolean)) return {draw:true};
+    return null;
+  }
+
+  function renderLocalBoard(result) {
+    const el = document.getElementById('board');
+    el.innerHTML = '';
+    const winCells = result?.cells || [];
+    const winner = result?.winner;
+    board.forEach((val, i) => {
+      const cell = document.createElement('div');
+      let cls = 'cell';
+      if (val) cls += ' taken ' + val.toLowerCase();
+      if (winCells.includes(i)) cls += ' win' + (winner==='O' ? ' o-win' : '');
+      const canClick = !val && !gameOver && !aiThinking && !(mode==='single' && turn==='O');
+      if (!canClick && !val) cls += ' disabled';
+      cell.className = cls;
+      cell.textContent = val || '';
+      if (canClick) cell.onclick = () => cellClick(i);
+      el.appendChild(cell);
+    });
+    if (result) {
+      gameOver = true;
+      if (result.winner) {
+        scores[result.winner]++;
+        updateScores();
+        const msg = mode==='single' ? (result.winner==='X' ? 'You win!' : 'AI wins!') : result.winner+' wins!';
+        setStatus(msg, result.winner.toLowerCase());
+      } else {
+        scores.D++;
+        updateScores();
+        setStatus("It's a draw!", '');
+      }
+      document.getElementById('reset-btn').style.display = 'block';
+    }
+  }
+
+  function resetGame() {
+    if (ws) {
+      ws.send(JSON.stringify({type:'reset'}));
+    } else {
+      board = Array(9).fill(null);
+      turn = 'X'; gameOver = false; aiThinking = false;
+      document.getElementById('thinking').textContent = '';
+      document.getElementById('reset-btn').style.display = 'none';
+      renderLocalBoard();
+      setStatus(mode==='single' ? 'Your turn' : "X's turn", 'x');
+    }
+  }
+
+  function setStatus(text, cls) {
+    const el = document.getElementById('game-status');
+    el.textContent = text;
+    el.className = 'status ' + (cls||'');
+  }
+
+  function updateScores(s) {
+    const sc = s || scores;
+    document.getElementById('score-x').textContent = sc.X;
+    document.getElementById('score-o').textContent = sc.O;
+    document.getElementById('score-d').textContent = sc.D;
+  }
+
+  function goHome() {
+    if (ws) { ws.close(); ws = null; }
+    aiThinking = false;
+    showScreen('lobby');
+  }
+
+  function showScreen(name) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + name).classList.add('active');
+  }
+
+  function connect(cb) {
     const proto = location.protocol === 'https:' ? 'wss' : 'ws';
     ws = new WebSocket(`${proto}://${location.host}`);
-    ws.onmessage = (e) => handle(JSON.parse(e.data));
+    ws.onopen = cb;
+    ws.onmessage = (e) => handleWS(JSON.parse(e.data));
     ws.onclose = () => {
-      if (document.getElementById('screen-game').classList.contains('active')) {
-        setStatus('Connection lost. Refresh to reconnect.', '');
-      }
+      if (document.getElementById('screen-game').classList.contains('active'))
+        setStatus('Connection lost.', '');
     };
   }
 
-  function handle(msg) {
+  function handleWS(msg) {
     if (msg.type === 'created') {
-      myRole = msg.role;
-      myRoomId = msg.roomId;
+      myRole = msg.role; myRoomId = msg.roomId;
       document.getElementById('display-code').textContent = msg.roomId;
       showScreen('waiting');
     }
-    else if (msg.type === 'joined') {
-      myRole = msg.role;
-      myRoomId = msg.roomId;
-      currentBoard = msg.board;
-      currentTurn = msg.turn;
+    else if (msg.type === 'joined' || msg.type === 'opponent_joined') {
+      if (msg.type === 'joined') myRole = msg.role;
+      board = msg.board; turn = msg.turn; scores = msg.scores; gameOver = false;
       updateScores(msg.scores);
+      document.getElementById('label-x').textContent = 'X';
+      document.getElementById('label-o').textContent = 'O';
+      document.getElementById('role-badge').innerHTML = `You are <span class="r${myRole.toLowerCase()}">${myRole}</span>`;
+      document.getElementById('reset-btn').style.display = 'none';
+      document.getElementById('thinking').textContent = '';
       showScreen('game');
-      renderBoard();
-      updateStatus();
-    }
-    else if (msg.type === 'opponent_joined') {
-      currentBoard = msg.board;
-      currentTurn = msg.turn;
-      updateScores(msg.scores);
-      showScreen('game');
-      renderBoard();
-      updateStatus();
+      renderOnlineBoard();
+      updateOnlineStatus();
     }
     else if (msg.type === 'update') {
-      currentBoard = msg.board;
-      currentTurn = msg.turn;
+      board = msg.board; turn = msg.turn;
       updateScores(msg.scores);
       if (msg.winner) {
         gameOver = true;
-        renderBoard(msg.winner === 'X' ? [0,1,2] : null, msg.board, msg.winner);
+        renderOnlineBoard();
         setStatus(msg.winner === myRole ? 'You win!' : 'You lose!', msg.winner.toLowerCase());
         document.getElementById('reset-btn').style.display = 'block';
       } else if (msg.draw) {
         gameOver = true;
-        renderBoard(null, msg.board, null);
+        renderOnlineBoard();
         setStatus("It's a draw!", '');
         document.getElementById('reset-btn').style.display = 'block';
       } else {
         gameOver = false;
-        renderBoard();
-        updateStatus();
+        renderOnlineBoard();
+        updateOnlineStatus();
         document.getElementById('reset-btn').style.display = 'none';
       }
     }
     else if (msg.type === 'reset') {
-      currentBoard = msg.board;
-      currentTurn = msg.turn;
-      gameOver = false;
+      board = msg.board; turn = msg.turn; gameOver = false;
       updateScores(msg.scores);
-      renderBoard();
-      updateStatus();
+      renderOnlineBoard();
+      updateOnlineStatus();
       document.getElementById('reset-btn').style.display = 'none';
     }
     else if (msg.type === 'opponent_left') {
-      setStatus('Opponent left the game.', '');
-      gameOver = true;
+      setStatus('Opponent left.', ''); gameOver = true;
     }
     else if (msg.type === 'error') {
       document.getElementById('join-error').textContent = msg.msg;
     }
   }
 
-  function renderBoard(winCells, board, winner) {
-    const b = board || currentBoard;
+  function renderOnlineBoard() {
     const el = document.getElementById('board');
     el.innerHTML = '';
-    b.forEach((val, i) => {
+    board.forEach((val, i) => {
       const cell = document.createElement('div');
       let cls = 'cell';
       if (val) cls += ' taken ' + val.toLowerCase();
-      if (!val && !gameOver && currentTurn === myRole) cls += '';
-      else if (!val) cls += ' disabled';
-      if (winCells && winCells.includes(i)) cls += ' win ' + (winner || '').toLowerCase();
+      if (!val && (gameOver || turn !== myRole)) cls += ' disabled';
       cell.className = cls;
       cell.textContent = val || '';
-      if (!val && !gameOver && currentTurn === myRole) {
-        cell.onclick = () => sendMove(i);
-      }
+      if (!val && !gameOver && turn === myRole)
+        cell.onclick = () => ws.send(JSON.stringify({type:'move', index:i}));
       el.appendChild(cell);
     });
   }
 
-  function sendMove(i) {
-    if (gameOver || currentTurn !== myRole) return;
-    ws.send(JSON.stringify({ type: 'move', index: i }));
-  }
-
-  function updateStatus() {
-    const myTurn = currentTurn === myRole;
-    setStatus(myTurn ? 'Your turn' : "Opponent's turn", myTurn ? myRole.toLowerCase() : '');
-  }
-
-  function setStatus(text, cls) {
-    const el = document.getElementById('game-status');
-    el.textContent = text;
-    el.className = 'status ' + cls;
-  }
-
-  function updateScores(s) {
-    document.getElementById('score-x').textContent = s.X;
-    document.getElementById('score-o').textContent = s.O;
-    document.getElementById('score-d').textContent = s.D;
-  }
-
-  function showScreen(name) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('screen-' + name).classList.add('active');
-    if (name === 'game') {
-      const badge = document.getElementById('role-badge');
-      badge.innerHTML = `You are <span class="r${myRole.toLowerCase()}">${myRole}</span>`;
-    }
+  function updateOnlineStatus() {
+    const mine = turn === myRole;
+    setStatus(mine ? 'Your turn' : "Opponent's turn", mine ? myRole.toLowerCase() : '');
   }
 
   function createRoom() {
-    connect();
-    ws.onopen = () => ws.send(JSON.stringify({ type: 'create' }));
+    connect(() => ws.send(JSON.stringify({type:'create'})));
   }
 
   function joinRoom() {
     const code = document.getElementById('room-input').value.trim().toUpperCase();
     if (!code) return;
     document.getElementById('join-error').textContent = '';
-    connect();
-    ws.onopen = () => ws.send(JSON.stringify({ type: 'join', roomId: code }));
-  }
-
-  function resetGame() {
-    ws.send(JSON.stringify({ type: 'reset' }));
+    connect(() => ws.send(JSON.stringify({type:'join', roomId:code})));
   }
 
   function leaveRoom() {
-    if (ws) ws.close();
+    if (ws) { ws.close(); ws = null; }
     showScreen('lobby');
-    document.getElementById('room-input').value = '';
-    document.getElementById('join-error').textContent = '';
   }
 
   function copyCode() {
@@ -467,9 +432,8 @@
     });
   }
 
-  document.getElementById('room-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') joinRoom();
-  });
+  document.getElementById('room-input').addEventListener('keydown', e => { if (e.key==='Enter') joinRoom(); });
+  selectMode('single');
 </script>
 </body>
 </html>
