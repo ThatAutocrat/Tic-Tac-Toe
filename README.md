@@ -1,7 +1,8 @@
 # ✕ ○ TicTacToe
 
 Real-time multiplayer Tic Tac Toe built on Node.js + WebSockets with a single-binary static frontend.
-Can play mutiplayer,AI, or the same device.
+
+Can play mutiplayer, AI, or the same device.
 ---
 
 ## Stack
